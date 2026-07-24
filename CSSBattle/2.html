@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23 July</title>
+
+    <style>
+        :root{
+            --bg: #3F3642;
+            --fg: #FEF6E2;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px
+        }
+
+        .area {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background: #3F3642;
+            overflow: hidden
+        }
+
+        .area p {
+            margin: 20px;
+            height: 260px;
+            background: repeating-linear-gradient(var(--fg) 0 20px, #0000 0 40px)
+        }
+
+        .area p:before,
+        .area p:after {
+            content: "";
+            position: absolute;
+            left: 120px;
+            top: 70px;
+            width: 160px;
+            height: 160px;
+            background: var(--bg)
+        }
+
+        .area p:after {
+            left: 140px;
+            top: 90px;
+            width: 120px;
+            height: 120px;
+            background: var(--fg);
+            border-radius: 50%
+        }
+    </style>
+</head>
+
+<body>
+    <div class="area">
+        <p></p>
+    </div>
+    
+    <a class="source" href="https://cssbattle.dev/play/859niQYa0JbjMbzMNadA" target="_blank" rel="noopener">Task source</a>
+</body>
+</html>
