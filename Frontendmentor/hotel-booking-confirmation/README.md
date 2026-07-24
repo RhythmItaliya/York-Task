@@ -1,13 +1,18 @@
 # Hotel Booking Confirmation Page
 
-Assignment project for the Frontend Mentor hotel booking confirmation page challenge.
+A solution to the [Frontend Mentor](https://www.frontendmentor.io) Hotel booking confirmation page challenge.
 
-## Task
+## Preview
 
-Build a responsive hotel booking confirmation page using the provided starter files, assets, and design references.
+![Preview of the hotel booking confirmation page](./preview.jpg)
 
-## Project Files
+## Built with
 
-- `index.html`
-- `assets/`
-- `design/`
+- Semantic HTML5
+- CSS custom properties & Flexbox
+- Vanilla JavaScript
+- Responsive, desktop-first workflow
+
+## Run locally
+
+Then open `http://localhost:8000` in your browser.
