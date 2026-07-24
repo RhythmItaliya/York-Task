@@ -1,125 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
 
   <title>Frontend Mentor | Hotel booking confirmation page</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
 
-  <!-- Sidebar starts -->
+  <!-- Page: Sidebar + main content side by side -->
+  <div class="page">
 
-  Maison Soleil
+    <!-- ===================== Sidebar ===================== -->
+    <aside class="sidebar">
 
-  <!-- Guest navigation -->
-  Your stay
-  1
-  The house
-  Around town
-  Breakfast
-  Messages
+      <!-- Logo -->
+      <div class="sidebar__brand">
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.svg" alt="Maison Soleil">
+        </a>
 
-  <!-- Local weather -->
-  Today in Cassis
-  27°
-  Sunny · light breeze
+        <!-- Toggle menu (mobile only) -->
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false"
+          aria-controls="sidebar-nav">
+          <img src="./assets/images/icon-menu.svg" alt="" class="menu-toggle__icon menu-toggle__icon--open">
+          <img src="./assets/images/icon-close.svg" alt="" class="menu-toggle__icon menu-toggle__icon--close">
+        </button>
+      </div>
 
-  Est. 1987
-  Maison Soleil · 12 Rue des Oliviers · Cassis
-  © 2026 Maison Soleil
+      <!-- Primary navigation -->
+      <nav class="nav" id="sidebar-nav">
+        <ul class="nav__list">
+          <li>
+            <a href="#" class="nav__link nav__link--active">
+              <img src="./assets/images/icon-bed.svg" alt="" class="nav__icon">
+              <span class="nav__text">Your stay</span>
+              <span class="nav__badge">1</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav__link">
+              <img src="./assets/images/icon-house.svg" alt="" class="nav__icon">
+              <span class="nav__text">The house</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav__link">
+              <img src="./assets/images/icon-pin.svg" alt="" class="nav__icon">
+              <span class="nav__text">Around town</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav__link">
+              <img src="./assets/images/icon-breakfast-outline.svg" alt="" class="nav__icon">
+              <span class="nav__text">Breakfast</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav__link">
+              <img src="./assets/images/icon-mail.svg" alt="" class="nav__icon">
+              <span class="nav__text">Messages</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-  <!-- Sidebar ends -->
+      <!-- Local weather card -->
+      <div class="weather">
+        <img src="./assets/images/icon-weather.svg" alt="" class="weather__icon">
+        <p class="weather__label">Today in Cassis</p>
+        <p class="weather__temp">27&deg;</p>
+        <p class="weather__desc">Sunny &middot; light breeze</p>
+      </div>
 
-  <!-- Main content starts -->
+      <!-- Sidebar footer -->
+      <footer class="sidebar__footer">
+        <p class="sidebar__footer-line">Est. 1987</p>
+        <address class="sidebar__footer-line">Maison Soleil &middot; 12 Rue des Oliviers &middot; Cassis</address>
+        <p class="sidebar__footer-line">&copy; 2026 Maison Soleil</p>
+      </footer>
 
-  Booking · Confirmed
-  Bienvenue, Lucia.
+    </aside>
 
-  Print receipt
-  Add to calendar
+    <!-- ===================== Main content ===================== -->
+    <!-- Built in the next step -->
 
-  <!-- Booking cards start -->
-
-  <!-- Receipt card -->
-  Receipt
-  № MS-2026
-  0421-AH
-
-  Your stay
-
-  Check in
-  25 Apr
-  Saturday · 15:00
-
-  Check out
-  29 Apr
-  Wednesday · 11:00
-
-  Room · La Garrigue · 4 nights
-  € 620.00
-  Breakfast · 2 guests
-  € 96.00
-  Tourist tax
-  € 14.40
-
-  Total paid
-  € 730.40
-
-  Paid · Wise · GBP
-  <!-- Barcode image -->
-
-  <!-- Note from host card -->
-  Welcome
-  A note from your host, Margaux.
-  We're so glad you're coming. The shutters will be open, the lemonade cold, and the cat - Poivre - pretending not to notice you.
-  Room
-  La Garrigue
-
-  <!-- Booking cards end -->
-
-  <!-- Guest info row starts -->
-
-  <!-- Arrival -->
-  Arrival
-  01
-  Check-in from 15:00
-  Sat, 25 April
-  Ring the brass bell by the blue door. If we're at the market, the key is in the terracotta pot by the olive tree.
-
-  <!-- Wifi -->
-  Wifi
-  02
-  Le Soleil · Guest
-  Password below
-  Network
-  Le Soleil · Guest
-  Password
-  soleil-2026
-  Copy
-
-  <!-- Breakfast -->
-  Breakfast
-  03
-  Served 8 - 10:30
-  On the terrace
-  Fresh figs, Marseille honey, pain au levain, and espresso. Gluten-free option? Leave a note the night before.
-
-  <!-- Guest info row ends -->
-
-  <!-- Main content ends -->
-
-  <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-    Coded by <a href="#">Your Name Here</a>.
-  </footer>
+  </div>
 </body>
+
 </html>
