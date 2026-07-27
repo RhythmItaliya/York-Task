@@ -1,7 +1,7 @@
 ---
 Document ID: DOC-03
 Title: Rules & Skills — Engineering Policy for AI Agents
-Version: 1.0
+Version: 1.1
 Status: Approved
 Owner: AI Challenge Engineering
 Last Updated: 2026-07-27
@@ -48,18 +48,31 @@ When implementing a new feature area (e.g. the deferred Resume module — see `0
 - Validation schemas belong in `src/lib/validation.ts`.
 - Repeated style strings belong in `src/styles/classNames.ts`, not duplicated inline.
 
-# 3. Code Reuse Policy
+# 3. Dependency Approval Policy
+
+**Every time a new dependency needs to be installed (via `npm install`, `npm install -D`, or equivalent), the agent must ask the user for explicit approval before installing it.**
+
+This applies to every new package, with no exceptions for packages that seem small, common, or "obviously needed":
+
+1. State the exact package name and version to be installed, and a one-line reason it's needed.
+2. Wait for explicit approval before running the install command.
+3. Do not install a dependency speculatively (e.g. "in case it's needed later") — prior work on this codebase already had to remove a dependency (`clsx`) that was installed speculatively and never used (see the Task 2 questions-and-answers file at the project root, and `01-prompts-and-build-log.md`).
+4. This rule applies regardless of whether the dependency is a `dependency` or `devDependency`, and regardless of whether it is being added, upgraded to a new major version, or replaced.
+
+Removing an unused dependency does not require this approval step — only installation does.
+
+# 4. Code Reuse Policy
 
 Before authoring new markup, an agent must check `src/components/ui/` and `src/styles/classNames.ts` for existing implementations. Prior engineering work on this codebase (documented in `01-prompts-and-build-log.md`) was specifically directed at eliminating duplicated input/button markup and repeated Tailwind class strings. Reintroducing such duplication is a policy violation. Any JSX block repeated more than once must be extracted into a component.
 
-# 4. Type Safety Policy
+# 5. Type Safety Policy
 
 Every function, prop, and unit of state must be explicitly typed. Use of `any` is prohibited. Types must be derived from a single source of truth:
 
 - Form values must be inferred from their Zod schema (`z.infer<typeof schema>`); hand-written parallel interfaces are prohibited.
 - Shared domain types (`CurrentUser`, `Job`, etc.) must be imported from their canonical location (`src/types/`, or the owning data module), not redeclared.
 
-# 5. Design Fidelity Policy
+# 6. Design Fidelity Policy
 
 Portions of this application's interface (Sidebar, JobCard, JobsTopBar, RightRail) were implemented from prompts specifying exact colors, spacing, icon selections, and behavior (see `01-prompts-and-build-log.md`, Phases 6 and 8). When a prompt specifies such detail:
 
@@ -67,7 +80,7 @@ Portions of this application's interface (Sidebar, JobCard, JobsTopBar, RightRai
 2. Match the described structure and naming as closely as possible. Deviation is permitted only where a described requirement is technically incompatible with the current stack (e.g. an interaction that would require a backend not present in this project).
 3. Where simplification is unavoidable due to a missing dependency (backend, API, router capability), this must be disclosed explicitly in a code comment at the point of simplification — never silently.
 
-# 6. Verification Policy
+# 7. Verification Policy
 
 Every change must pass the following sequence, in order, before being considered complete:
 
@@ -79,15 +92,15 @@ npm run build         # tsc -b && vite build — must succeed
 
 `npm run build` may not be skipped under any circumstance: it is the only step in this sequence that performs type-checking, since the development server (`vite dev`) does not.
 
-# 7. Authentication Security Policy
+# 8. Authentication Security Policy
 
 `src/lib/mockAuth.ts` stores credentials in plain text in `localStorage` and must never be represented as production-ready. It must not be extended to store additional sensitive data. Its risk-disclosure comment must remain intact in all future revisions. If a task requires production-grade authentication, this constitutes a request for backend/auth-provider integration and must be flagged explicitly to the requester — it must never be satisfied by silently expanding the mock implementation.
 
-# 8. Scope Discipline Policy
+# 9. Scope Discipline Policy
 
 This project's scope has been corrected mid-task on multiple occasions (e.g., restricting a broader implementation to the Jobs module only, per `01-prompts-and-build-log.md` Phase 8). An agent must default to the smallest change that satisfies the literal request received. Where a request is ambiguous between a narrow adjustment and a full feature implementation, the agent must select the narrower interpretation, state what was done, and await further instruction — rather than assuming the larger scope and requiring correction afterward.
 
-# 9. Reference Skills
+# 10. Reference Skills
 
 The following capabilities are required to operate correctly within this repository:
 
@@ -95,11 +108,12 @@ The following capabilities are required to operate correctly within this reposit
 - Tailwind CSS v4 via the Vite plugin (no `tailwind.config.js`; tokens are defined in CSS via custom properties).
 - React Router v7 (`BrowserRouter`, `Routes`, `Route`, `Link`, `useNavigate`, `Navigate`, `useLocation`).
 - React Hook Form with Zod (`useForm` with `zodResolver`; types inferred via `z.infer`).
-- Component composition as a discipline for eliminating duplication, per §3.
-- Precise translation of a detailed design specification into implementation, per §5.
+- Component composition as a discipline for eliminating duplication, per §4.
+- Precise translation of a detailed design specification into implementation, per §6.
 
-# 10. Revision History
+# 11. Revision History
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-07-27 | Initial company-standard release of engineering policy for AI agents |
+| 1.1 | 2026-07-27 | Added §3, Dependency Approval Policy — new dependency installs require explicit user approval before proceeding; renumbered subsequent sections |

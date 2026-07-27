@@ -22,7 +22,7 @@ This document specifies the approved technology stack for the AI Challenge appli
 | Forms | `react-hook-form` | Uncontrolled form state |
 | Validation | `zod` + `@hookform/resolvers` | Schema-based validation; types inferred with `z.infer` |
 | Icons | `lucide-react` | Sole approved icon library for this codebase |
-| Linting | `oxlint` | Zero-warning policy (see `03-rules-and-skills.md` §5) |
+| Linting | `oxlint` | Zero-warning policy (see `03-rules-and-skills.md` §7) |
 | Formatting | `prettier` | No semicolons, single quotes |
 
 No backend framework, ORM, or database is in scope. Authentication is served by a client-side mock (§5).
@@ -57,7 +57,7 @@ The binding directory policy, including the rule for introducing new feature dir
 ### 4.4 Styling
 - Tailwind utility classes are applied directly in JSX.
 - Design tokens (brand and sidebar accent colors) are defined as CSS custom properties in `src/index.css` and consumed via Tailwind arbitrary-value syntax (e.g. `bg-[var(--jobright-mint)]`).
-- Repeated utility strings (input styling, error text, primary button styling) are centralized in `src/styles/classNames.ts`. Duplication of these strings across files is a policy violation (see `03-rules-and-skills.md` §3).
+- Repeated utility strings (input styling, error text, primary button styling) are centralized in `src/styles/classNames.ts`. Duplication of these strings across files is a policy violation (see `03-rules-and-skills.md` §4).
 
 # 5. Authentication — Risk Disclosure
 

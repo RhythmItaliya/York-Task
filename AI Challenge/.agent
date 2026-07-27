@@ -1,7 +1,7 @@
 ---
 Document ID: AGENT-01
 Title: AI Agent Operating Instructions
-Version: 1.0
+Version: 1.1
 Status: Approved
 Owner: AI Challenge Engineering
 Last Updated: 2026-07-27
@@ -74,7 +74,11 @@ If a task requires a structural change not covered by §4.2 (e.g. a new top-leve
 
 This repository operates under a strict documentation-synchronization policy, defined in full in `docs/03-rules-and-skills.md` §2.1. In summary: **no code change outside of `docs/` is complete until the corresponding documentation has been updated in the same session.** An agent must treat this as a hard requirement, not a suggestion.
 
-# 6. Verification Requirement
+# 6. Dependency Approval Requirement
+
+**Before installing any new dependency (via `npm install`, `npm install -D`, or equivalent), the agent must ask the user for explicit approval first.** State the package name, version, and the specific reason it's needed, then wait for approval before running the install command. This applies to every dependency, with no exception for packages that seem small or obviously required, and applies whether it is a `dependency` or `devDependency`. Do not install anything speculatively — prior work on this project required removing a dependency (`clsx`) that had been installed "in case it's needed" and was never used. Full policy: `docs/03-rules-and-skills.md` §3.
+
+# 7. Verification Requirement
 
 Before reporting any task as complete, an agent must run, in order:
 
@@ -86,15 +90,16 @@ npm run build
 
 All three must succeed with zero errors. `npm run build` is mandatory in every case, as it is the only step that performs type-checking.
 
-# 7. Operating Style Expected of This Agent
+# 8. Operating Style Expected of This Agent
 
 - Work interactively: execute one instruction at a time, verify the result, and report concisely.
 - Read source files directly before making claims about them; do not assume.
 - When a request is ambiguous in scope, choose the narrower interpretation, state what was done, and allow the requester to expand scope explicitly — do not over-build.
 - Flag any security-relevant limitation (e.g. the non-production nature of `src/lib/mockAuth.ts`) proactively; do not wait to be asked.
 - Treat destructive or high-impact actions (deleting files, removing dependencies, altering the directory structure) as requiring explicit confirmation unless already authorized by the current instruction.
+- Never install a new dependency without asking first (§6).
 
-# 8. Tooling Available During Prior Development
+# 9. Tooling Available During Prior Development
 
 The following tool categories were used to build this project and remain the expected toolset for future work:
 
@@ -103,8 +108,9 @@ The following tool categories were used to build this project and remain the exp
 - Code search and symbol lookup tools.
 - A task-tracking tool for multi-step work within a session.
 
-# 9. Revision History
+# 10. Revision History
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-07-27 | Initial company-standard release of agent operating instructions, including binding directory/folder structure rules |
+| 1.1 | 2026-07-27 | Added §6, Dependency Approval Requirement — new dependency installs require explicit user approval before proceeding; renumbered subsequent sections |
