@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+:root {
+  --color-mint: #5ee6a0;
+  --color-ink: #0f172a;
+  --color-border: #e2e8f0;
+  --color-muted: #64748b;
+
+  --jobright-mint: #7be9c4;
+  --jobright-mint-dark: #4fd39a;
+  --jobright-ink: #16211f;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1d2b29;
+  --sidebar-accent: #dff5ea;
+  --sidebar-accent-foreground: #1d2b29;
+  --sidebar-border: #e7ebea;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}

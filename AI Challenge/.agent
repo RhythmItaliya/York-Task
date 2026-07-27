@@ -1,0 +1,110 @@
+---
+Document ID: AGENT-01
+Title: AI Agent Operating Instructions
+Version: 1.0
+Status: Approved
+Owner: AI Challenge Engineering
+Last Updated: 2026-07-27
+---
+
+# 1. Purpose
+
+This file provides binding operating instructions to any AI agent (Kiro, Claude Code, Cursor, GitHub Copilot, or equivalent) tasked with working in this repository. It is the first file an agent must consult before making any change. It supersedes an agent's default conventions where they conflict with the rules stated here.
+
+# 2. Origin of This Project
+
+This application was built using **Kiro CLI** (`kiro-cli chat`), model **claude-sonnet-5**, in an interactive, multi-turn, conversational session. The complete build history — every prompt issued and every action taken in response — is recorded in `docs/01-prompts-and-build-log.md`. An agent picking up work on this repository should read that document in full before proceeding, to understand not only what exists but why it was built the way it was.
+
+# 3. Mandatory Pre-Work Checklist
+
+Before making any change, an agent must:
+
+1. Read `docs/00-project-overview.md` to understand current scope and deferred scope.
+2. Read `docs/02-stack-and-architecture.md` to understand the approved stack and architecture.
+3. Read `docs/03-rules-and-skills.md` in full — it is binding engineering policy, not guidance.
+4. Confirm the directory/folder placement rules in Section 4 of this file before creating any new file.
+
+# 4. Directory and Folder Structure Rules (Binding)
+
+## 4.1 Top-Level Layout
+
+An agent must not introduce new top-level directories without updating `docs/00-project-overview.md` §4 in the same change. The approved top-level layout is:
+
+```
+AI Challenge/
+├── docs/          # Governing documentation — do not bypass
+├── .agent         # This file
+├── public/        # Static assets served as-is
+├── src/           # All application source code
+├── index.html
+├── package.json
+├── tsconfig*.json
+└── vite.config.ts
+```
+
+## 4.2 `src/` Subdirectory Rules
+
+| Directory | Rule |
+|---|---|
+| `src/components/ui/` | Generic, reusable, feature-agnostic components only. A component belongs here **only if** it has no import from `pages/`, `data/`, or any feature-specific type. |
+| `src/components/auth/` | Components used exclusively by the Login/Register module. |
+| `src/components/layout/` | Components forming the application shell (sidebar, dashboard frame), used on every authenticated page. |
+| `src/components/jobs/` | Components used exclusively by the Jobs module. |
+| `src/components/<new-feature>/` | Required when implementing a new feature area (e.g. `resume/`, `profile/`). Create a new subdirectory named for the feature. Do not add new-feature components to an existing, unrelated subdirectory. |
+| `src/pages/` | Route-level components only. One file per route. |
+| `src/lib/` | Non-UI logic: data access, validation schemas, the mock authentication store. |
+| `src/data/` | Static/sample data modules. |
+| `src/types/` | Shared TypeScript types consumed by more than one module. |
+| `src/styles/` | Centralized style constants (e.g. repeated Tailwind class strings). |
+
+## 4.3 Explicit Prohibitions
+
+- **Do not** place new components flat in `src/components/`. Every component must live in a subdirectory that matches its concern (§4.2).
+- **Do not** create a new top-level directory outside of `docs/`, `public/`, or `src/` without documenting the change in `docs/00-project-overview.md`.
+- **Do not** duplicate a directory's responsibility elsewhere (e.g. do not create a second "shared components" folder — `src/components/ui/` is the only approved location for that purpose).
+- **Do not** move or delete files inside `docs/` without producing a replacement that satisfies the same documentation obligations — this repository's documentation set must remain complete at all times.
+
+## 4.4 When Structure Must Change
+
+If a task requires a structural change not covered by §4.2 (e.g. a new top-level concern, a state-management directory, an API client layer), the agent must:
+1. Propose the change explicitly before implementing it, unless the request already specifies the structure.
+2. Update `docs/00-project-overview.md` §4 and `docs/03-rules-and-skills.md` §2 to reflect the new structure in the same session.
+
+# 5. Documentation Synchronization Requirement
+
+This repository operates under a strict documentation-synchronization policy, defined in full in `docs/03-rules-and-skills.md` §2.1. In summary: **no code change outside of `docs/` is complete until the corresponding documentation has been updated in the same session.** An agent must treat this as a hard requirement, not a suggestion.
+
+# 6. Verification Requirement
+
+Before reporting any task as complete, an agent must run, in order:
+
+```bash
+npm run format
+npm run lint
+npm run build
+```
+
+All three must succeed with zero errors. `npm run build` is mandatory in every case, as it is the only step that performs type-checking.
+
+# 7. Operating Style Expected of This Agent
+
+- Work interactively: execute one instruction at a time, verify the result, and report concisely.
+- Read source files directly before making claims about them; do not assume.
+- When a request is ambiguous in scope, choose the narrower interpretation, state what was done, and allow the requester to expand scope explicitly — do not over-build.
+- Flag any security-relevant limitation (e.g. the non-production nature of `src/lib/mockAuth.ts`) proactively; do not wait to be asked.
+- Treat destructive or high-impact actions (deleting files, removing dependencies, altering the directory structure) as requiring explicit confirmation unless already authorized by the current instruction.
+
+# 8. Tooling Available During Prior Development
+
+The following tool categories were used to build this project and remain the expected toolset for future work:
+
+- File read / write / directory-listing tools.
+- Shell command execution (package installation, build/lint/format commands, version control status checks).
+- Code search and symbol lookup tools.
+- A task-tracking tool for multi-step work within a session.
+
+# 9. Revision History
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-07-27 | Initial company-standard release of agent operating instructions, including binding directory/folder structure rules |
