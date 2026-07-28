@@ -425,8 +425,9 @@ body {
 .cards-fan {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
+  gap: 1.5rem;
   margin-top: 2.5rem;
   padding: 2rem 0 3rem;
   min-height: 420px;
@@ -484,12 +485,11 @@ body {
   box-shadow:
     0 4px 16px hsl(33 15% 15% / 0.06),
     0 12px 40px hsl(33 15% 15% / 0.08);
-  transform: rotate(-2deg);
   transition: transform 0.4s ease;
 }
 
 .cards-fan:hover .receipt {
-  transform: rotate(-5deg) translateX(-120px);
+  transform: rotate(-5deg) translateX(-60px);
 }
 
 .receipt__header {
@@ -633,8 +633,8 @@ body {
   position: relative;
   z-index: 2;
   width: 380px;
-  margin-left: 20px;
-  margin-top: 1.5rem;
+  margin-left: 0;
+  margin-top: 0;
   padding: 1.5rem 2rem 2rem;
   background: var(--terracotta-600);
   border-radius: 1rem;
@@ -642,12 +642,11 @@ body {
   box-shadow:
     0 4px 16px hsl(15 69% 37% / 0.15),
     0 12px 40px hsl(15 69% 37% / 0.2);
-  transform: rotate(3deg);
   transition: transform 0.4s ease;
 }
 
 .cards-fan:hover .host-note {
-  transform: rotate(5deg) translateX(120px);
+  transform: rotate(5deg) translateX(60px);
 }
 
 .host-note__header {
@@ -869,4 +868,188 @@ body {
 
 .btn-copy:hover {
   background: var(--neutral-200);
+}
+
+
+/* =============================================================
+   12. Mobile responsive (max-width: 48rem / 768px)
+   ============================================================= */
+
+@media (max-width: 64rem) {
+
+  /* --- Layout ------------------------------------------------ */
+
+  .page {
+    flex-direction: column;
+  }
+
+  /* --- Sidebar: top bar always visible, full overlay when open */
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    height: auto;
+    padding: 1rem 1.25rem;
+    border-right: none;
+    background-color: var(--neutral-50);
+    border-bottom: 1px solid var(--neutral-400);
+  }
+
+  .sidebar.is-open {
+    bottom: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  /* Top bar */
+  .sidebar__brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: none;
+  }
+
+  .sidebar.is-open .sidebar__brand {
+    border-bottom: 1px solid var(--neutral-400);
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .menu-toggle__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* Show hamburger by default, hide close */
+  .menu-toggle__icon--close {
+    display: none;
+  }
+
+  /* When expanded: show close, hide hamburger */
+  .menu-toggle[aria-expanded="true"] .menu-toggle__icon--open {
+    display: none;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-toggle__icon--close {
+    display: block;
+  }
+
+  /* Nav, weather, footer — hidden until open */
+  .nav,
+  .weather,
+  .sidebar__footer {
+    display: none;
+  }
+
+  .sidebar.is-open .nav,
+  .sidebar.is-open .weather,
+  .sidebar.is-open .sidebar__footer {
+    display: flex;
+  }
+
+  .sidebar.is-open .nav {
+    margin-top: 1.5rem;
+  }
+
+  .sidebar.is-open .weather {
+    margin-top: auto;
+  }
+
+  .sidebar.is-open .sidebar__footer {
+    flex-direction: column;
+  }
+
+  /* --- Main content ------------------------------------------ */
+
+  .main {
+    padding: 4.5rem 1.25rem 2rem;
+    /* top padding accounts for fixed top bar */
+  }
+
+  /* --- Header ------------------------------------------------ */
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .main-header__title {
+    font-size: 2rem;
+  }
+
+  .main-header__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* --- Cards fan: stacked vertically, no rotation ------------ */
+
+  .cards-fan {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: 1.5rem 0 1rem;
+    min-height: auto;
+  }
+
+  .cards-fan__hint {
+    display: none;
+  }
+
+  .cards-fan__sun {
+    display: none;
+  }
+
+  .receipt {
+    width: 100%;
+    transform: none;
+    box-shadow:
+      0 2px 8px hsl(33 15% 15% / 0.05),
+      0 4px 16px hsl(33 15% 15% / 0.06);
+  }
+
+  .cards-fan:hover .receipt {
+    transform: none;
+  }
+
+  .host-note {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    transform: none;
+    box-shadow:
+      0 2px 8px hsl(15 69% 37% / 0.1),
+      0 4px 16px hsl(15 69% 37% / 0.15);
+  }
+
+  .cards-fan:hover .host-note {
+    transform: none;
+  }
+
+  /* --- Info row: single column ------------------------------- */
+
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
 }
