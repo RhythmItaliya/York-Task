@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 Jul</title>
+
+    <style>
+        :root {
+            --bg: #4C4C6B;
+            --outline: #EBF6F0;
+            --fg: #4A9A86;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .area {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background: var(--bg);
+            overflow: hidden;
+            flex: none
+        }
+
+        .area i {
+            position: absolute;
+            font-style: normal;
+        }
+
+        .o-mouth {
+            left: 80px;
+            top: 0;
+            width: 240px;
+            height: 80px;
+            background: var(--outline);
+        }
+
+        .o-bowl {
+            left: 110px;
+            top: 79px;
+            width: 180px;
+            height: 90px;
+            border-radius: 0 0 90px 90px;
+            background: var(--outline);
+        }
+
+        .f-mouth {
+            left: 100px;
+            top: 0;
+            width: 200px;
+            height: 60px;
+            background: var(--fg);
+        }
+
+        .f-bowl {
+            left: 131px;
+            top: 60px;
+            width: 138px;
+            height: 90px;
+            border-radius: 0 0 69px 69px;
+            background: var(--fg);
+        }
+
+        .f-stem {
+            left: 185px;
+            top: 110px;
+            width: 30px;
+            height: 190px;
+            background: var(--fg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="area">
+        <i class="o-mouth"></i>
+        <i class="o-bowl"></i>
+        <i class="f-mouth"></i>
+        <i class="f-bowl"></i>
+        <i class="f-stem"></i>
+    </div>
+
+    <a class="source" href="https://cssbattle.dev/play/LtfUvFd3HF61ZOGlL9Q9" target="_blank" rel="noopener">Task source</a>
+</body>
+
+</html>
