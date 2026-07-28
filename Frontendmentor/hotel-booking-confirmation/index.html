@@ -102,6 +102,151 @@
         </div>
       </header>
 
+      <!-- Cards: Receipt + Host note (overlapping fan) -->
+      <section class="cards-fan" aria-label="Booking details">
+
+        <!-- Receipt card -->
+        <article class="receipt">
+          <header class="receipt__header">
+            <div class="receipt__header-left">
+              <p class="receipt__label">Receipt</p>
+              <h2 class="receipt__title">Your stay</h2>
+            </div>
+            <div class="receipt__header-right">
+              <p class="receipt__ref">N&#x2DA; MS-2026</p>
+              <p class="receipt__ref">0421-AH</p>
+            </div>
+          </header>
+
+          <div class="receipt__dates">
+            <div class="receipt__date">
+              <p class="receipt__date-label">Check in</p>
+              <p class="receipt__date-value">25 Apr</p>
+              <p class="receipt__date-detail">Saturday &middot; 15:00</p>
+            </div>
+            <div class="receipt__date">
+              <p class="receipt__date-label">Check out</p>
+              <p class="receipt__date-value">29 Apr</p>
+              <p class="receipt__date-detail">Wednesday &middot; 11:00</p>
+            </div>
+          </div>
+
+          <ul class="receipt__lines">
+            <li class="receipt__line">
+              <span class="receipt__line-desc">Room &middot; La Garrigue &times; 4 nights</span>
+              <span class="receipt__line-price">&euro; 620.00</span>
+            </li>
+            <li class="receipt__line">
+              <span class="receipt__line-desc">Breakfast &times; 2 guests</span>
+              <span class="receipt__line-price">&euro; 96.00</span>
+            </li>
+            <li class="receipt__line">
+              <span class="receipt__line-desc">Tourist tax</span>
+              <span class="receipt__line-price">&euro; 14.40</span>
+            </li>
+          </ul>
+
+          <footer class="receipt__footer">
+            <div class="receipt__total">
+              <p class="receipt__total-label">Total paid</p>
+              <p class="receipt__total-value">&euro; 730.40</p>
+            </div>
+            <div class="receipt__meta">
+              <img src="./assets/images/icon-barcode.svg" alt="" class="receipt__barcode">
+              <p class="receipt__payment">Paid &middot; Wise &middot; GBP</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Sun between cards (visible on hover/fan) -->
+        <img src="./assets/images/illustration-sun.svg" alt="" class="cards-fan__sun">
+
+        <!-- Host note card (terracotta) -->
+        <article class="host-note">
+          <header class="host-note__header">
+            <p class="host-note__label">Welcome card</p>
+            <img src="./assets/images/icon-sun.svg" alt="" class="host-note__sun">
+          </header>
+
+          <div class="host-note__body">
+            <p class="host-note__intro">A note from your host,</p>
+            <h2 class="host-note__name">Margaux.</h2>
+            <p class="host-note__message">We&rsquo;re so glad you&rsquo;re coming. The shutters will be open, the lemonade cold, and the cat &ndash; Poivre &ndash; pretending not to notice you.</p>
+          </div>
+
+          <footer class="host-note__footer">
+            <p class="host-note__room-label">Room</p>
+            <p class="host-note__room-name">La Garrigue</p>
+          </footer>
+        </article>
+
+        <p class="cards-fan__hint">
+          <img src="./assets/images/icon-sparkle.svg" alt="" class="cards-fan__sparkle">
+          Hover to fan
+          <img src="./assets/images/icon-sparkle.svg" alt="" class="cards-fan__sparkle">
+        </p>
+
+      </section>
+
+      <!-- Guest info row -->
+      <section class="info-row" aria-label="Guest information">
+
+        <!-- Arrival card -->
+        <article class="info-card">
+          <header class="info-card__header">
+            <span class="info-card__icon info-card__icon--terracotta">
+              <img src="./assets/images/icon-key.svg" alt="">
+            </span>
+            <h3 class="info-card__title info-card__title--terracotta">Arrival</h3>
+            <span class="info-card__number">01</span>
+          </header>
+          <h4 class="info-card__heading">Check-in from 15:00</h4>
+          <p class="info-card__sub">Sat, 25 April</p>
+          <p class="info-card__desc">Ring the brass bell by the blue door. If we&rsquo;re at the market, the key is in the terracotta pot by the olive tree.</p>
+        </article>
+
+        <!-- Wifi card -->
+        <article class="info-card">
+          <header class="info-card__header">
+            <span class="info-card__icon info-card__icon--blue">
+              <img src="./assets/images/icon-wifi.svg" alt="">
+            </span>
+            <h3 class="info-card__title info-card__title--blue">Wifi</h3>
+            <span class="info-card__number">02</span>
+          </header>
+          <h4 class="info-card__heading">Le Soleil &middot; Guest</h4>
+          <p class="info-card__sub">Password below</p>
+          <dl class="info-card__details">
+            <div class="info-card__detail-row">
+              <dt class="info-card__detail-label">Network</dt>
+              <dd class="info-card__detail-value">Le Soleil &middot; Guest</dd>
+            </div>
+            <div class="info-card__detail-row">
+              <dt class="info-card__detail-label">Password</dt>
+              <dd class="info-card__detail-value">
+                <span>soleil-2026</span>
+                <button type="button" class="btn-copy">Copy</button>
+              </dd>
+            </div>
+          </dl>
+        </article>
+
+        <!-- Breakfast card -->
+        <article class="info-card">
+          <header class="info-card__header">
+            <span class="info-card__icon info-card__icon--rose">
+              <img src="./assets/images/icon-breakfast.svg" alt="">
+            </span>
+            <h3 class="info-card__title info-card__title--rose">Breakfast</h3>
+            <span class="info-card__number">03</span>
+          </header>
+          <h4 class="info-card__heading">Served 8 &ndash; 10:30</h4>
+          <p class="info-card__sub">On the terrace</p>
+          <p class="info-card__desc">Fresh figs, Marseille honey, pain au levain, and espresso. Gluten-free option? Leave a note the night before.</p>
+        </article>
+
+      </section>
+
     </main>
 
   </div>
