@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POP</title>
+
+    <style>
+        :root {
+            --bg: #A84A4B;
+            --fg: #F5E3B5;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .area {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background: var(--bg);
+            overflow: hidden;
+            flex: none
+        }
+
+        .area i {
+            position: absolute;
+            background: var(--fg);
+        }
+
+        .stem {
+            width: 20px;
+            height: 130px;
+            top: 110px;
+        }
+
+        .bowl {
+            width: 100px;
+            height: 80px;
+            top: 110px;
+            border-radius: 0 40px 40px 0;
+        }
+
+        .p1-stem { left: 40px; }
+        .p1-bowl { left: 40px; }
+
+        .p2-stem { left: 260px; }
+        .p2-bowl { left: 260px; }
+
+        .o {
+            width: 80px;
+            height: 80px;
+            left: 160px;
+            top: 110px;
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="area">
+        <i class="stem p1-stem"></i>
+        <i class="bowl p1-bowl"></i>
+        <i class="o"></i>
+        <i class="stem p2-stem"></i>
+        <i class="bowl p2-bowl"></i>
+    </div>
+
+    <a class="source" href="https://cssbattle.dev/play/PnDXitrVaUCdncId6g1x" target="_blank" rel="noopener">Task source</a>
+</body>
+
+</html>
