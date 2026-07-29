@@ -1,0 +1,93 @@
+AI CHALLENGE — TASK 2 QUESTIONS & ANSWERS
+==========================================
+
+1. Which AI tool did I use?
+----------------------------
+Kiro CLI (kiro-cli chat), running the claude-sonnet-5 model — an agentic
+coding assistant that works directly in the terminal with file read/write,
+shell execution, and code-search tools, rather than a chat window I
+copy-paste code out of.
+
+2. What prompts did I give?
+----------------------------
+I built this iteratively, in an interactive back-and-forth rather than one
+big prompt. The real sequence (paraphrased) was:
+
+1. "Scaffold a new Vite + React + TypeScript app and build a Login/Register
+   page." - including a design reference for the visuals I wanted.
+2. "Set up demo account creation so the login actually works" - this led to
+   a local mock authentication layer since there was no backend.
+3. "Pre-fill the demo account credentials on the login form."
+4. "Restructure this properly: minimal Tailwind repetition, reusable
+   components, full TypeScript typing, and proper npm scripts for
+   lint/format/build. Also remove the visible demo-credentials text from
+   the UI."
+5. "Add a sidebar with a blank dashboard content area next to it" -
+   followed by a correction: "match the exact colors, spacing, and icons I
+   described, don't approximate."
+6. "Fix a duplicated icon in the sidebar, and show a real job listing
+   instead of a blank area."
+7. "Build out the full Jobs page - tabs, search, match-score cards with
+   action buttons, and a right-hand info panel - but leave the other
+   sidebar sections blank for now."
+8. Later: "Optimize the code - remove unnecessary files, make things
+   reusable - but don't delete any actual functionality."
+9. Finally: "Organize the components folder properly by concern, and write
+   formal documentation for how this was built."
+
+3. Which AI suggestions did I keep?
+-------------------------------------
+- The initial component split for the auth forms (a shared AuthLayout
+  wrapper instead of duplicating the card/branding markup in both Login
+  and Register).
+- Using react-hook-form + zod for form state and validation, with types
+  inferred directly from the Zod schema instead of hand-written duplicate
+  interfaces.
+- The suggestion to extract repeated input/button markup into shared
+  FormField and PrimaryButton components once the duplication became
+  obvious across Login and Register.
+- Structuring the mock authentication as a small, self-contained module
+  (mockAuth.ts) with clearly named functions (registerUser, loginUser,
+  getCurrentUser, logoutUser) rather than scattering localStorage calls
+  across the page components.
+- The final component reorganization into ui/, auth/, layout/, and jobs/
+  subfolders instead of one flat components/ directory.
+
+4. Which suggestions did I reject, and why?
+---------------------------------------------
+- A first draft of the sidebar used generic slate/gray colors as an
+  approximation instead of the exact colors I'd specified. I rejected this
+  and asked for the exact hex values and spacing to be used - an
+  approximation wasn't good enough when I'd already given precise details.
+- A set of static "preview" content sections were drafted for the Resume,
+  Profile, AI Agent, Coaching, and Interview pages (to make the sidebar
+  feel more complete). I rejected this and had them removed - I'd onl
+  asked for the Jobs page to be fully built, and building out five extra
+  pages was scope creep I hadn't asked for.
+- The "clsx" utility library was installed early on "in case it's needed"
+  for conditional class names. It ended up unused throughout the whole
+  build. I had it removed during the cleanup pass rather than leaving a
+  dependency in the project that nothing imports.
+
+5. What manual changes did I make?
+--------------------------------------
+Most of my involvement was in reviewing and steering, not hand-editing
+code directly - but the decisions were mine, made by checking actual
+output rather than trusting the first pass:
+
+- Ran the actual dev server and compared screenshots of the running app
+  against what I wanted, which is how I caught that the Jobs page was
+  missing the tab bar, the right-hand info panel, and the match-score
+  visuals on each job card in an earlier pass.
+- Caught a bug where two different sidebar items (Coaching and Interview)
+  had been given the same icon, and asked for it to be fixed.
+- Corrected the scope multiple times mid-task (e.g., "just do Jobs, not
+  the other pages yet") rather than letting the build run further than
+  intended.
+- Required every change to pass npm run build, npm run lint, and npm run
+  format before accepting it as done - this caught issues that a purely
+  visual check wouldn't have (e.g., confirming the bundle size was
+  unchanged after a refactor, to prove no behavior had shifted).
+- Made the final call to delete an unused reference folder from the
+  workspace once it was no longer needed, after confirming it was safely
+  recoverable (a separate git repository with a remote).
